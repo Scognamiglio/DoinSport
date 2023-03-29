@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +25,9 @@ class BookController extends AbstractController
      */
     public function postBook(Request $request)
     {
-        return "blbl";
+        $name = $request->request->get('nom');
+
+        return new Response(json_encode($name, true)); // Créer un objet Response et le renvoyer
 
 
     }

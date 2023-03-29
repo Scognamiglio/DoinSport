@@ -9,7 +9,7 @@
 }
 .footer-basic {
     position: absolute;
-    bottom: 0%;
+    margin-top: 4em;
     background-color: #ffffff;
     color: #4b4c4d;
     left: 50%;
@@ -72,4 +72,13 @@
 .bodyCenter{
     margin-top: 10em;
     text-align: center;
+}
+
+.myForm{
+    width: 35em;
+    background-color: #F4F4F4;
+    padding-top: 6em;
+    margin: -3em auto 0em auto;
+    padding-bottom: 1em;
+    border-radius: 0.25rem;
 }
