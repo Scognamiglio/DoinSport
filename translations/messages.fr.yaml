@@ -1,0 +1,22 @@
+# translations/messages.fr.yaml
+Bandeau.home: Accueil
+Bandeau.book: Réservation
+Bandeau.showBook: Consulter Réservation
+Bandeau.account: mon compte
+
+Footer.service: Services
+Footer.contact : nous contacter
+Footer.cgu : CGU
+
+FieldInput.nom : Nom
+FieldInput.prenom : Prenom
+FieldInput.mail : Adresse e-mail
+FieldInput.phone : Numéro de téléphone
+FieldInput.time : Durée
+FieldInput.nbr : Nombre de participants
+FieldInput.date : Date de la réservation
+
+FieldSelect.sport : Sport à pratiquer
+FieldSelect.default : Choisir
+
+Book.save : Enregistrer la séance

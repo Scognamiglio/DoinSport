@@ -1,0 +1,15 @@
+index:
+    path: /
+    controller: App\Controller\HomeController::index
+
+home:
+    path: /home
+    controller: App\Controller\HomeController::index
+
+book:
+    path: /book
+    controller: App\Controller\BookController::index
+
+postBook:
+    path: /postBook
+    controller: App\Controller\BookController::postBook
