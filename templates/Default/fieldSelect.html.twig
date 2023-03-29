@@ -1,5 +1,5 @@
 <div class="form-floating alignField">
-    <select required class="form-select" id="floatingSelect" aria-label="{{ ('FieldSelect.' ~ nom) | trans}}" nom = "{{ nom }}">
+    <select required class="form-select" id="floatingSelect" aria-label="{{ ('FieldSelect.' ~ nom) | trans}}" name = "{{ nom }}">
         <option value="" selected>{{ 'FieldSelect.default' | trans }}</option>
         {% for option in options %}
             <option value="{{ option }}">{{ option }}</option>
