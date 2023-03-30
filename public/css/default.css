@@ -82,3 +82,24 @@
     padding-bottom: 1em;
     border-radius: 0.25rem;
 }
+
+.close{
+    cursor: pointer;
+    margin-right: -1.5em;
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    margin-top: -0.5em;
+    text-decoration: none;
+}
+
+#myAlert{
+    width: 25em;
+    right: 1em;
+    top: 4em;
+    position: fixed;
+}

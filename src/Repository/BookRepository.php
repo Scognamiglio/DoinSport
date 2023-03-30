@@ -38,6 +38,16 @@ class BookRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function countByField(String $field,String $value) :?int
+    {
+        return $this
+            ->createQueryBuilder('b')
+            ->select('count(1)')
+            ->where("b.$field = :val")
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 
 //    /**
 //     * @return Book[] Returns an array of Book objects

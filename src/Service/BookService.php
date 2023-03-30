@@ -28,6 +28,20 @@ class BookService implements ContainerAwareInterface
     {
         // Pas ultra pertinent, mais j'aime bien les lambda. Si un traitement identique plusieurs fois => créer un transformer pour passé du format $request à $entity
         $fct = function ($field) use ($request) {return $request->request->get($field);};
+
+        // Dans un cas de figure concret, créer un service gérant la limite de réservation, que ça soit par salle, participant ou horaire. Le tout renseigné dans la configuration client
+        $limit = $this->nbrLimitReservation('monClient');
+        $myDate = new DateTime($fct('date'));
+
+        $nbrAlready = $this
+            ->bookRepository
+            ->count(['date'=>$myDate]);
+
+
+        if($nbrAlready >= $limit){
+            return false; // Il serait plus propre de renvoyer une exception et de la gérer avec throw new
+        }
+
         $book = new Book();
         $book
             ->setName($fct('prenom'))
@@ -42,6 +56,14 @@ class BookService implements ContainerAwareInterface
 
         $this->bookRepository->save($book,true);
 
-        return $request->request->get('nom') == 'blbl2';
+        return true;
+    }
+
+    /**
+     * @param string $client
+     */
+    public function nbrLimitReservation(String $client) : int
+    {
+        return 2;
     }
 }

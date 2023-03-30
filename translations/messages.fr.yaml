@@ -20,3 +20,5 @@ FieldSelect.sport : Sport à pratiquer
 FieldSelect.default : Choisir
 
 Book.save : Enregistrer la séance
+Book.success: Séance enregistré.
+Book.error: Séance déjà réservé, essayer un autre horaire.
