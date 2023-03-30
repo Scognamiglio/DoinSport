@@ -6,6 +6,11 @@ home:
     path: /home
     controller: App\Controller\HomeController::index
 
+patchBook:
+    path: /book/{id}
+    controller: App\Controller\BookController::patchBook
+    methods: [PATCH]
+
 book:
     path: /book
     controller: App\Controller\BookController::index
@@ -13,3 +18,11 @@ book:
 postBook:
     path: /postBook
     controller: App\Controller\BookController::postBook
+
+bookConfirm:
+    path: /bookConfirm/{id}
+    controller: App\Controller\BookController::bookConfirm
+
+showMail:
+    path: /showMail
+    controller: App\Controller\ShowMailController::index

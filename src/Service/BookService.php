@@ -3,11 +3,16 @@
 namespace App\Service;
 
 use App\Entity\Book;
+use App\Exception\NoBookException;
+use App\Exception\NoFieldKnownException;
 use App\Repository\BookRepository;
 use DateTime;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
 
 class BookService implements ContainerAwareInterface
@@ -15,10 +20,12 @@ class BookService implements ContainerAwareInterface
     use ContainerAwareTrait;
 
     public function __construct(
-        private BookRepository $bookRepository
+        private BookRepository $bookRepository,
+        private MailerInterface $mailer
     )
     {
         $this->bookRepository = $bookRepository;
+        $this->mailer = $mailer;
     }
 
     /**
@@ -39,7 +46,7 @@ class BookService implements ContainerAwareInterface
 
 
         if($nbrAlready >= $limit){
-            return false; // Il serait plus propre de renvoyer une exception et de la gérer avec throw new
+            return false; // Il serait plus propre de renvoyer une exception et de la gérer avec throw new, mais n'étant pas vraiment une erreur je ne l'ai pas fais.
         }
 
         $book = new Book();
@@ -56,6 +63,8 @@ class BookService implements ContainerAwareInterface
 
         $this->bookRepository->save($book,true);
 
+        $this->sendMail($book);
+
         return true;
     }
 
@@ -65,5 +74,47 @@ class BookService implements ContainerAwareInterface
     public function nbrLimitReservation(String $client) : int
     {
         return 2;
+    }
+
+    // Idéalement à mettre dans un microService indépendant et privé pour centralisé les mails.
+    // ça permettrais un meilleur contrôle des différents mails et de changer de solution si nécéssaire sans chercher de partout
+    public function sendMail(Book $book) :void
+    {
+        $email = (new TemplatedEmail())
+            ->from('loic.scognamiglio16@gmail.com')
+            ->to($book->getEmail())
+            ->subject('Test Mailer with Twig Template')
+            ->htmlTemplate('emails/sendBook.html.twig')
+            ->context([
+                'name' => $book->getName(),
+                'lastName' => $book->getName(),
+                'date' => $book->getDate()->format('Y-m-d'),
+                'id' => $book->getId()
+            ]);
+
+        $this->mailer->send($email);
+    }
+
+    public function editBook(int $id,$fieldAndValue) :void
+    {
+        $book = $this
+            ->bookRepository
+            ->find(['id'=>$id]);
+
+        if(empty($book)){
+            throw new NoBookException('Aucune réservation connu pour cette id');
+        }
+
+        foreach ($fieldAndValue as $field=>$value){
+            $nameSet = "set".ucfirst($field);
+            if(!method_exists($book,$nameSet)){
+                throw new NoFieldKnownException("Le $field est non connu pour la réservation");
+            }
+            $book->$nameSet($value);
+        }
+
+        $this
+            ->bookRepository
+            ->save($book,true);
     }
 }
