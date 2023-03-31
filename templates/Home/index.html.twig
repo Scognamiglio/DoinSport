@@ -14,7 +14,9 @@
         {% block header %}
             {% include '@Default/bandeau.html.twig' %}
         {% endblock %}
-
+        <div STYLE="width: 35em;background-color: #F4F4F4;margin: 4em auto 0em auto;padding-bottom: 1em;border-radius: 0.25rem;text-align: center">
+            {{ 'Home.intro' | trans }}
+        </div>
         {% block footer %}
             {% include '@Default/footer.html.twig' %}
         {% endblock %}

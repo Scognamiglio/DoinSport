@@ -1,35 +1,37 @@
 # translations/messages.fr.yaml
+Home.intro: Bienvenu à toi ! Je t'invite à naviguer sur les différents menu
+Name.societe : doinsport
 Bandeau.home: Accueil
 Bandeau.book: Réservation
 Bandeau.showBook: Consulter Réservation
-Bandeau.account: mon compte
+Bandeau.account: Mon compte
 
 Footer.service: Services
-Footer.contact : nous contacter
+Footer.contact : Nous contacter
 Footer.cgu : CGU
 
 FieldInput.nom : Nom
-FieldInput.prenom : Prenom
+FieldInput.prenom : Prénom
 FieldInput.mail : Adresse e-mail
 FieldInput.phone : Numéro de téléphone
 FieldInput.time : Durée
-FieldInput.nbr : Nombre de participants
+FieldInput.nbr : Nombre de participant(s)
 FieldInput.date : Date de la réservation
 
 FieldSelect.sport : Sport à pratiquer
 FieldSelect.default : Choisir
 
 Book.save : Enregistrer la séance
-Book.success: Séance enregistré.
-Book.error: Séance déjà réservé, essayer un autre horaire.
+Book.success: Séance enregistrée.
+Book.error: Séance déjà réservée, essayer un autre horaire.
 
-SendBook.intro: Vous recevez ce mail pour validation la réservation pour la séance du
-SendBook.fin: Veuillez-cliquer sur le bouton ci-dessous qui correspond à votre besoin.
+SendBook.intro: Vous recevez ce mail pour valider la réservation pour la séance du
+SendBook.fin: Veuillez cliquer sur le bouton ci-dessous qui correspond à votre besoin.
 SendBook.confirm: Cliquez-ici pour valider ou annuler la réservation
 SendBook.valid: Je valide ma réservation
 SendBook.refus: J'annule ma réservation
 
-BookConfirm.success: Action enregistré.
+BookConfirm.success: Action enregistrée.
 
 ShowBook.filtre: Configurer les filtres de votre choix.
 ShowBook.mail: E-mail
@@ -38,4 +40,4 @@ ShowBook.nbr: Participant
 ShowBook.date: Date
 ShowBook.sport: Sport
 ShowBook.filtrer: Filtrer !
-ShowBook.state: Status
+ShowBook.state: Statut

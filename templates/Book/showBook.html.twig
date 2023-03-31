@@ -20,18 +20,19 @@
         {% block body %}
 
             <div class="myLittleTable">
-                <div class="filtre" style="margin: 0 0em 3em 3em;padding-top: 1em;">
+                <div class="filtre" >
                     {{ 'ShowBook.filtre' | trans }}
                 </div>
+                <span class="fieldForFiltre">
+                    {% include '@Default/fieldInput.html.twig' with {'nom' : "nom", 'value' : lastname | default('')} %}
+                    {% include '@Default/fieldInput.html.twig' with {'nom' : "mail", 'value' : email | default('')} %}
+                    {% include '@Default/fieldInput.html.twig' with {'nom' : "phone", 'value' : phone | default('')} %}
+                    {% include '@Default/fieldInput.html.twig' with {'nom' : "date",'type' : 'date', 'value' : date | default('')} %}
 
-                {% include '@Default/fieldInput.html.twig' with {'nom' : "nom", 'value' : lastname | default('')} %}
-                {% include '@Default/fieldInput.html.twig' with {'nom' : "mail", 'value' : email | default('')} %}
-                {% include '@Default/fieldInput.html.twig' with {'nom' : "phone", 'value' : phone | default('')} %}
-                {% include '@Default/fieldInput.html.twig' with {'nom' : "date",'type' : 'date', 'value' : date | default('')} %}
-
-                <button id="sendFiltre" class="btn btn-outline-secondary" style="float: right;margin-top: -2em;margin-right: 1em;">
-                    {{ 'ShowBook.filtrer' | trans }}
-                </button>
+                    <button id="sendFiltre" class="btn btn-outline-secondary" style="float: right;margin-top: -2em;margin-right: 1em;">
+                        {{ 'ShowBook.filtrer' | trans }}
+                    </button>
+                </span>
             </div>
 
             <div class="myTable">

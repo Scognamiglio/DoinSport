@@ -32,3 +32,10 @@ td,th {
 .arrowSelected{
     color: grey;
 }
+
+.filtre{
+    margin-bottom: 3em;
+    padding-top: 1em;
+    border-bottom: solid 1px grey;
+    padding-left: 3em;
+}

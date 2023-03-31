@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">DoinSport</a>
+        <a class="navbar-brand" href="#">{{ 'Name.societe' | trans }}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -10,7 +10,6 @@
                 {% include '@Default/liNav.html.twig' with {'where' : "home"} %}
                 {% include '@Default/liNav.html.twig' with {'where' : "book"} %}
                 {% include '@Default/liNav.html.twig' with {'where' : "showBook"} %}
-                {% include '@Default/liNav.html.twig' with {'where' : "account"} %}
 
             </ul>
         </div>
