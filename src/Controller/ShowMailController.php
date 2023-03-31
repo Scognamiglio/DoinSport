@@ -21,7 +21,7 @@ class ShowMailController extends AbstractController
 
         return $this->render('Emails/sendBook.html.twig', [
             'name' => 'Loïc',
-            'lastName' => 'Scognamiglio',
+            'lastname' => 'Scognamiglio',
             'date' => '2023-03-30',
             'id' => '40'
         ]);

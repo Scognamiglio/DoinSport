@@ -88,7 +88,7 @@ class BookService implements ContainerAwareInterface
             ->htmlTemplate('emails/sendBook.html.twig')
             ->context([
                 'name' => $book->getName(),
-                'lastName' => $book->getName(),
+                'lastname' => $book->getName(),
                 'date' => $book->getDate()->format('Y-m-d'),
                 'id' => $book->getId()
             ]);
