@@ -10,7 +10,7 @@ use App\Enum\State;
 
 class AppExtension extends AbstractExtension
 {
-    public function getFilters()
+    public function getFilters() : array
     {
         return [
             new TwigFilter('getState', [$this, 'getState']),
