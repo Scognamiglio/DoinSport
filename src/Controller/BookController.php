@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\Book;
 use App\Exception\NoBookException;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -23,6 +24,7 @@ class BookController extends AbstractController
     }
     /**
      * @Route("/book", name="book")
+     * @return Response
      */
     public function index(): Response
     {
@@ -34,6 +36,8 @@ class BookController extends AbstractController
 
     /**
      * @Route("/postBook", name="postBook")
+     * @param Request $request
+     * @return Response
      */
     public function postBook(Request $request): Response
     {
@@ -46,6 +50,8 @@ class BookController extends AbstractController
 
     /**
      * @Route("/bookConfirm/{id}", name="bookConfirm")
+     * @param int $id
+     * @return Response
      */
     public function bookConfirm(int $id): Response
     {
@@ -61,6 +67,9 @@ class BookController extends AbstractController
 
     /**
      * @Route("/book/{id}", name="patchBook")
+     * @param Request $request
+     * @param int $id
+     * @return Response
      */
     public function patchBook(Request $request,int $id): Response
     {
@@ -75,4 +84,26 @@ class BookController extends AbstractController
             throw new $classErrorName($e->getMessage());
         }
     }
+
+    /**
+     * @Route("/getBook", name="getBook")
+     * @param Request $request
+     * @return Response
+     */
+    public function getBook(Request $request): Response
+    {
+        try{
+
+
+
+            $listBook = $this
+                ->bookService
+                ->getBook($request);
+            return new Response(json_encode($listBook, true));
+        }catch (\Exception $e){
+            $classErrorName = get_class($e);
+            throw new $classErrorName($e->getMessage());
+        }
+    }
+
 }

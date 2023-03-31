@@ -19,6 +19,10 @@ postBook:
     path: /postBook
     controller: App\Controller\BookController::postBook
 
+getBook:
+        path: /getBook
+        controller: App\Controller\BookController::getBook
+
 bookConfirm:
     path: /bookConfirm/{id}
     controller: App\Controller\BookController::bookConfirm

@@ -41,6 +41,11 @@ class Book
     #[ORM\Column]
     private ?int $state = null;
 
+    public function getAllFields() : array
+    {
+        return ['id','state','date','nbrPerson','time','activity','email','phone','lastname','name'];
+    }
+
     public function getId(): ?int
     {
         return $this->id;

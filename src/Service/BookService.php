@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\Book;
 use App\Exception\NoBookException;
 use App\Exception\NoFieldKnownException;
+use App\Exception\OrderNotUsableException;
 use App\Repository\BookRepository;
 use DateTime;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -116,5 +117,80 @@ class BookService implements ContainerAwareInterface
         $this
             ->bookRepository
             ->save($book,true);
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function getBook(Request $request) : array // Peut-être un peu trop longue, il serait intéressant de l'exploser en 3 petites méthodes
+    {
+        $diffFields = (new Book())->getAllFields();
+        $fields = $request->query->get('field');
+        $where = [];
+        $order = [];
+
+
+        if(!empty($fields)){
+            $fields = explode(',',$fields);
+
+            // Vérifie la confirmité des fields + mets en minuscule
+            $fields = array_map(function ($field) use($diffFields)
+            {
+                if(!in_array(strtolower($field),$diffFields)){
+                    throw new NoFieldKnownException("Le $field est non connu pour la réservation");
+                }
+                return strtolower($field);
+
+            },$fields);
+        }else{
+            $fields = $diffFields;
+        }
+
+        foreach ($request->query->keys() as $key){
+            if(in_array(strtolower($key),$diffFields)){
+                $where[strtolower($key)] = $request->query->get($key);
+            }
+        }
+
+        if(!empty($request->query->get('order'))){
+            $tmp = explode(' ',$request->query->get('order'));
+
+            $fieldOrder = strtolower($tmp[0]);
+            if(!in_array($fieldOrder,$diffFields))
+                throw new OrderNotUsableException("Le $fieldOrder est non connu pour order");
+
+            if(count($tmp) == 1){
+                $order[$fieldOrder] = 'asc';
+            }else{
+                $operator = strtolower($tmp[1]);
+                if(!in_array($operator,['asc','desc']))
+                    throw new OrderNotUsableException("L'operateur $operator est non connu pour order (asc/desc)");
+
+                $order[$fieldOrder] = $operator;
+            }
+        }
+
+        return $this
+            ->searchBook($fields,$where,$order);
+    }
+
+    public function searchBook(array $fields,array $where = [],array $order = []): array
+    {
+        $ret = [];
+        $books = $this
+            ->bookRepository
+            ->findBy($where,$order);
+
+
+        foreach($books as $book){
+            $ret[] = array_combine(
+                $fields,
+                array_map(function ($f)use($book){
+                    $nameMethod = "get".ucfirst($f);
+                    return $book->$nameMethod();
+                },$fields)
+            );
+        }
+        return $ret;
     }
 }
