@@ -31,6 +31,11 @@
             </div>
         {% endblock %}
 
+        {% block popin %}
+            {% include '@Default/optin.html.twig' %}
+        {% endblock %}
+
+
 
         <!-- Ont aurait pu tous gérer à partir de form de symfony, mais l'objectif étant de faire du twig j'ai préfère gérer l'intégration à la main. -->
         {% block script %}
@@ -47,12 +52,7 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data)
-                            if(data == true){
-                                showOptin(true,'{{ 'Book.success' | trans }}')
-                            }else{
-                                showOptin(false,'{{ 'Book.error' | trans }}')
-                            }
+                            showOptin(true,'{{ 'BookConfirm.success' | trans }}')
                         })
 
                 });
