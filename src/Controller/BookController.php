@@ -3,6 +3,8 @@
 namespace App\Controller;
 use App\Entity\Book;
 use App\Exception\NoBookException;
+use App\Enum\State;
+use Doctrine\Common\Annotations\Annotation\Enum;
 use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -58,7 +60,7 @@ class BookController extends AbstractController
     {
         $order = explode(" ", $request->query->get('order') ?? 'date asc');
 
-        $fieldToUse = ['id','lastname','name','email','phone','activity','time','nbrPerson','date'];
+        $fieldToUse = ['id','lastname','name','email','phone','activity','time','nbrPerson','date','state'];
         $where = array_filter($request->query->all(),function ($f) use ($fieldToUse){
            return in_array($f,$fieldToUse);
         },ARRAY_FILTER_USE_KEY );
@@ -74,6 +76,12 @@ class BookController extends AbstractController
                 'orderArrow' => $order[1]
             ],$where);
         return $this->render('Book/showBook.html.twig',$allParam);
+    }
+
+
+    public function getState(string $key) : string
+    {
+        return State::search($key);
     }
 
 

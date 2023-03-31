@@ -29,6 +29,8 @@ SendBook.confirm: Cliquez-ici pour valider ou annuler la réservation
 SendBook.valid: Je valide ma réservation
 SendBook.refus: J'annule ma réservation
 
+BookConfirm.success: Action enregistré.
+
 ShowBook.filtre: Configurer les filtres de votre choix.
 ShowBook.mail: E-mail
 ShowBook.phone: Numéro
@@ -36,3 +38,4 @@ ShowBook.nbr: Participant
 ShowBook.date: Date
 ShowBook.sport: Sport
 ShowBook.filtrer: Filtrer !
+ShowBook.state: Status

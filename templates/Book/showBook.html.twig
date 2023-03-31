@@ -23,6 +23,7 @@
                 <div class="filtre" style="margin: 0 0em 3em 3em;padding-top: 1em;">
                     {{ 'ShowBook.filtre' | trans }}
                 </div>
+
                 {% include '@Default/fieldInput.html.twig' with {'nom' : "nom", 'value' : lastname | default('')} %}
                 {% include '@Default/fieldInput.html.twig' with {'nom' : "mail", 'value' : email | default('')} %}
                 {% include '@Default/fieldInput.html.twig' with {'nom' : "phone", 'value' : phone | default('')} %}
@@ -46,13 +47,14 @@
                         <th scope="col" for="time">{{ 'FieldInput.time' | trans }} {% include '@Default/order.html.twig' %} </th>
                         <th scope="col" for="nbrPerson">{{ 'ShowBook.nbr' | trans }} {% include '@Default/order.html.twig' %} </th>
                         <th scope="col" for="date">{{ 'ShowBook.date' | trans }} {% include '@Default/order.html.twig' %} </th>
+                        <th scope="col" for="state">{{ 'ShowBook.state' | trans }} {% include '@Default/order.html.twig' %} </th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for data in allData %}
                         <tr>
                             {% for field in fieldToUse %}
-                                <td> {{ data[field] }} </td>
+                                <td> {{ (field == 'state') ? (data[field] | getState) : data[field] }} </td>
                             {% endfor %}
                         </tr>
                     {% endfor %}
