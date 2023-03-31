@@ -46,26 +46,7 @@
 
 
         {% block popin %}
-            <div class="alert alert-success alert-dismissible" id="myAlert">
-                <span class="close">×</span>
-                <span id="myAlert-texte"></span>
-            </div>
-            <script>
-                function showOptin(success,texte){
-                    $('#myAlert').fadeIn();
-                    if(success){
-                        $('#myAlert').removeClass('alert-danger')
-                        $('#myAlert').addClass('alert-success')
-                    }else{
-                        $('#myAlert').removeClass('alert-success')
-                        $('#myAlert').addClass('alert-danger')
-                    }
-                    $('#myAlert-texte').html(texte)
-
-                }
-                $('#myAlert').fadeOut(0);
-                $('.close').click(() => {$('#myAlert').fadeOut();})
-            </script>
+            {% include '@Default/optin.html.twig' %}
         {% endblock %}
 
 

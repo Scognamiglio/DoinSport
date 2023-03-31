@@ -56,11 +56,12 @@ class BookController extends AbstractController
     public function bookConfirm(int $id): Response
     {
         $data = $this->bookService->searchBook(['name','lastname','date','id'],['id'=>$id]);
+        var_dump($data);
         if(empty($data)){
             throw new NoBookException("Aucune réservation pour l'id $id");
         }
 
-        return $this->render('Book/bookConfirm.html.twig',$data);
+        return $this->render('Book/bookConfirm.html.twig',$data[0]);
     }
 
 
@@ -92,9 +93,6 @@ class BookController extends AbstractController
     public function getBook(Request $request): Response
     {
         try{
-
-
-
             $listBook = $this
                 ->bookService
                 ->getBook($request);

@@ -85,7 +85,7 @@ class BookService implements ContainerAwareInterface
             ->from('loic.scognamiglio16@gmail.com')
             ->to($book->getEmail())
             ->subject('Test Mailer with Twig Template')
-            ->htmlTemplate('emails/sendBook.html.twig')
+            ->htmlTemplate('Emails/sendBook.html.twig')
             ->context([
                 'name' => $book->getName(),
                 'lastname' => $book->getName(),
@@ -187,7 +187,11 @@ class BookService implements ContainerAwareInterface
                 $fields,
                 array_map(function ($f)use($book){
                     $nameMethod = "get".ucfirst($f);
-                    return $book->$nameMethod();
+                    $value = $book->$nameMethod();
+                    return is_object($value) && get_class($value) == 'DateTime'
+                        ? $value->format('Y-m-d')
+                        : $value;
+
                 },$fields)
             );
         }
