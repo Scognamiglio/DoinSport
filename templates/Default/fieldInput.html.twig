@@ -1,4 +1,12 @@
+{% set value = value | default('') %}
 <div class="form-floating mb-3 alignField">
-    <input required type="{{ type | default("text") }}" class="form-control" id="floatingInput" placeholder="{{ ( 'FieldInput.' ~ nom ) | trans }}" name="{{ nom }}">
+    <input
+            {% if value != '' %} value="{{ value }}" {% endif %}
+            {{ required | default("")}}
+            type="{{ type | default("text") }}"
+            class="form-control"
+            id="floatingInput"
+            placeholder="{{ ( 'FieldInput.' ~ nom ) | trans }}"
+            name="{{ nom }}">
     <label for="floatingInput">{{ ( 'FieldInput.' ~ nom ) | trans }}</label>
 </div>

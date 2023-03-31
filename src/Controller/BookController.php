@@ -35,6 +35,55 @@ class BookController extends AbstractController
     }
 
     /**
+     * @Route("/bookConfirm/{id}", name="bookConfirm")
+     * @param int $id
+     * @return Response
+     */
+    public function bookConfirm(int $id): Response
+    {
+        $data = $this->bookService->searchBook(['name','lastname','date','id'],['id'=>$id]);
+        if(empty($data)){
+            throw new NoBookException("Aucune réservation pour l'id $id");
+        }
+
+        return $this->render('Book/bookConfirm.html.twig',$data[0]);
+    }
+
+    /**
+     * @Route("/showBook", name="showBook")
+     * @param Request $request
+     * @return Response
+     */
+    public function showBook(Request $request): Response
+    {
+        $order = explode(" ", $request->query->get('order') ?? 'date asc');
+
+        $fieldToUse = ['id','lastname','name','email','phone','activity','time','nbrPerson','date'];
+        $where = array_filter($request->query->all(),function ($f) use ($fieldToUse){
+           return in_array($f,$fieldToUse);
+        },ARRAY_FILTER_USE_KEY );
+
+        $data = $this
+            ->bookService
+            ->searchBook($fieldToUse,$where,[$order[0]=>$order[1]]);
+
+        $allParam = array_merge([
+            'allData'=>$data,
+                'fieldToUse' => $fieldToUse,
+                'orderField' => $order[0],
+                'orderArrow' => $order[1]
+            ],$where);
+        return $this->render('Book/showBook.html.twig',$allParam);
+    }
+
+
+
+
+
+
+
+
+    /**
      * @Route("/postBook", name="postBook")
      * @param Request $request
      * @return Response
@@ -46,22 +95,6 @@ class BookController extends AbstractController
             ->saveBook($request);
 
         return new Response(json_encode($ret, true));
-    }
-
-    /**
-     * @Route("/bookConfirm/{id}", name="bookConfirm")
-     * @param int $id
-     * @return Response
-     */
-    public function bookConfirm(int $id): Response
-    {
-        $data = $this->bookService->searchBook(['name','lastname','date','id'],['id'=>$id]);
-        var_dump($data);
-        if(empty($data)){
-            throw new NoBookException("Aucune réservation pour l'id $id");
-        }
-
-        return $this->render('Book/bookConfirm.html.twig',$data[0]);
     }
 
 

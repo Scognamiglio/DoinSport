@@ -3,3 +3,33 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+
+.myTable{
+    width: 60em;
+    background-color: #F4F4F4;
+    margin: 6em auto 0em auto;
+    padding-bottom: 1em;
+    border-radius: 0.25rem;
+}
+
+.myLittleTable{
+    width: 35em;
+    background-color: #F4F4F4;
+    margin: 6em auto 0em auto;
+    padding-bottom: 1em;
+    border-radius: 0.25rem;
+}
+
+td,th {
+    white-space: nowrap;
+    background-color: #F4F4F4!important;
+}
+
+.arrowOrder{
+    cursor: pointer;
+}
+
+.arrowSelected{
+    color: grey;
+}

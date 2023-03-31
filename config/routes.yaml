@@ -6,6 +6,21 @@ home:
     path: /home
     controller: App\Controller\HomeController::index
 
+showBook:
+    path: /showBook
+    controller: App\Controller\BookController::showBook
+
+bookConfirm:
+    path: /bookConfirm/{id}
+    controller: App\Controller\BookController::bookConfirm
+
+showMail:
+    path: /showMail
+    controller: App\Controller\ShowMailController::index
+
+
+
+
 patchBook:
     path: /book/{id}
     controller: App\Controller\BookController::patchBook
@@ -22,11 +37,3 @@ postBook:
 getBook:
         path: /getBook
         controller: App\Controller\BookController::getBook
-
-bookConfirm:
-    path: /bookConfirm/{id}
-    controller: App\Controller\BookController::bookConfirm
-
-showMail:
-    path: /showMail
-    controller: App\Controller\ShowMailController::index

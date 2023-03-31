@@ -18,7 +18,6 @@ class ShowMailController extends AbstractController
      */
     public function index(): Response
     {
-
         return $this->render('Emails/sendBook.html.twig', [
             'name' => 'Loïc',
             'lastname' => 'Scognamiglio',

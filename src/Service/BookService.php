@@ -177,6 +177,10 @@ class BookService implements ContainerAwareInterface
     public function searchBook(array $fields,array $where = [],array $order = []): array
     {
         $ret = [];
+
+        if(isset($where['date'])){
+            $where['date'] = new DateTime($where['date']);
+        }
         $books = $this
             ->bookRepository
             ->findBy($where,$order);

@@ -23,17 +23,17 @@
                     Renseignez les champs suivant pour enregistrer une séance, un mail récapitulatif vous serra envoyez suite à celà.
                 </div>
                 <div class="myForm">
-                    {% include '@Default/fieldInput.html.twig' with {'nom' : "nom"} %}
-                    {% include '@Default/fieldInput.html.twig' with {'nom' : "prenom"} %}
-                    {% include '@Default/fieldInput.html.twig' with {'nom' : "mail",'type' : 'mail'} %}
-                    {% include '@Default/fieldInput.html.twig' with {'nom' : "phone"} %}
+                    {% include '@Default/fieldInput.html.twig' with {'nom' : "nom", 'required' : 'required'} %}
+                    {% include '@Default/fieldInput.html.twig' with {'nom' : "prenom", 'required' : 'required'} %}
+                    {% include '@Default/fieldInput.html.twig' with {'nom' : "mail",'type' : 'mail', 'required' : 'required'} %}
+                    {% include '@Default/fieldInput.html.twig' with {'nom' : "phone", 'required' : 'required'} %}
 
-                    {% include '@Default/fieldSelect.html.twig' with {'nom' : "sport", 'options' : optionsActivity} %}
+                    {% include '@Default/fieldSelect.html.twig' with {'nom' : "sport", 'options' : optionsActivity, 'required' : 'required'} %}
                     <br/>
-                    {% include '@Default/fieldInput.html.twig' with {'nom' : "time",'type' : 'number'} %}
-                    {% include '@Default/fieldInput.html.twig' with {'nom' : "nbr",'type' : 'number'} %}
+                    {% include '@Default/fieldInput.html.twig' with {'nom' : "time",'type' : 'number', 'required' : 'required'} %}
+                    {% include '@Default/fieldInput.html.twig' with {'nom' : "nbr",'type' : 'number', 'required' : 'required'} %}
                     <!-- Dans un projet plus concret, mettre un datePicker peut-être mieux. Aussi utilisé les données déjà connus pour savoir si un créneau est disponible pour rendre le datePicker plus cohérent -->
-                    {% include '@Default/fieldInput.html.twig' with {'nom' : "date",'type' : 'date'} %}
+                    {% include '@Default/fieldInput.html.twig' with {'nom' : "date",'type' : 'date', 'required' : 'required'} %}
 
                     <input type="submit" class="btn btn-outline-secondary" value="{{ 'Book.save' | trans }}">
                 </div>

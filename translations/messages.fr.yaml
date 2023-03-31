@@ -28,3 +28,11 @@ SendBook.fin: Veuillez-cliquer sur le bouton ci-dessous qui correspond à votre 
 SendBook.confirm: Cliquez-ici pour valider ou annuler la réservation
 SendBook.valid: Je valide ma réservation
 SendBook.refus: J'annule ma réservation
+
+ShowBook.filtre: Configurer les filtres de votre choix.
+ShowBook.mail: E-mail
+ShowBook.phone: Numéro
+ShowBook.nbr: Participant
+ShowBook.date: Date
+ShowBook.sport: Sport
+ShowBook.filtrer: Filtrer !
